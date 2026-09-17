@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luyện Nói · Boya Sơ Cấp 1 · Bài 2</title>
+<style>
+  :root{
+    --paper:#F6F1E6; --paper-2:#EFE7D6; --white:#FFFFFF;
+    --ink:#1C2333; --ink-soft:#4A4F63; --muted:#7C7A6E;
+    --seal:#A8352F; --seal-deep:#8A2A25;
+    --line:#D9CFB8;
+    --accent:#2E6DB4; --accent-soft:#E4EEF8;
+    --shadow: 0 16px 34px -18px rgba(28,35,51,.28); --radius: 16px;
+  }
+  .card[data-tier="0"]{ --accent:#2E6DB4; --accent-soft:#E4EEF8; }
+  .card[data-tier="1"]{ --accent:#B4622E; --accent-soft:#F8ECDF; }
+  .card[data-tier="2"]{ --accent:#2F6E5D; --accent-soft:#E2EFE9; }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Segoe UI","Be Vietnam Pro",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image: radial-gradient(circle at 20% 20%, rgba(28,35,51,.035) 0, transparent 40%), radial-gradient(circle at 80% 70%, rgba(28,35,51,.035) 0, transparent 40%); }
+  .cn{ font-family:"Microsoft YaHei","PingFang SC","Be Vietnam Pro",sans-serif; }
+  ::selection{ background:var(--seal); color:#fff; }
+  :focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
+
+  .hero{ position:relative; background:var(--seal); color:#fff; padding:40px 24px 48px; overflow:hidden; z-index:1; }
+  .hero::before{ content:"口语"; position:absolute; right:-40px; top:-50px; font-weight:900; font-size:260px; line-height:1; color:rgba(255,255,255,0.08); pointer-events:none; user-select:none; }
+  .hero-inner{ max-width:1100px; margin:0 auto; position:relative; }
+  .brand-bar{ display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.35); border-radius:30px; padding:6px 16px 6px 8px; margin-bottom:18px; }
+  .brand-mark{ font-weight:900; font-size:14px; background:#fff; color:var(--seal); border-radius:20px; padding:4px 10px; }
+  .brand-name{ font-weight:800; font-size:13px; letter-spacing:.08em; color:#fff; }
+  .hero h1{ font-weight:700; font-size:clamp(26px, 4vw, 40px); line-height:1.15; margin:0 0 8px; }
+  .hero p.lede{ font-size:15px; line-height:1.6; max-width:600px; color:rgba(255,255,255,.85); margin:0; }
+
+  .control-bar{ position:sticky; top:0; z-index:60; background:var(--paper); border-bottom:1px solid var(--line); }
+  .control-bar-inner{ max-width:1100px; margin:0 auto; padding:9px 22px; display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; }
+  .ctrl-btn{ all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:700; padding:8px 15px; border:1px solid var(--ink); border-radius:20px; color:var(--ink); background:#fff; }
+  .ctrl-btn:hover{ background:var(--ink); color:#fff; }
+  .ctrl-btn.active{ background:var(--seal); border-color:var(--seal); color:#fff; }
+
+  .app{ max-width:1100px; margin:0 auto; padding:32px 22px 80px; position:relative; z-index:1; }
+  .card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px clamp(18px,4vw,42px) 38px; position:relative; }
+  .card::before{ content:""; position:absolute; top:0; left:0; right:0; height:5px; background:var(--seal); border-radius:16px 16px 0 0; }
+  .lesson-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:22px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:18px; }
+  .lesson-tag{ display:inline-flex; align-items:center; gap:9px; font-size:12px; letter-spacing:.1em; color:var(--accent); text-transform:uppercase; margin-bottom:8px; font-weight:700; }
+  .stamp-badge{ width:24px; height:24px; border-radius:6px; background:var(--seal); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:900; }
+  .hanzi-title{ font-weight:900; font-size:clamp(30px,4.2vw,44px); color:var(--ink); margin:0 0 6px; line-height:1.15; }
+  .pinyin{ font-size:15px; color:var(--accent); font-weight:600; letter-spacing:.02em; }
+  .meaning{ font-weight:500; font-size:16px; color:var(--ink-soft); margin-top:4px; }
+  .goal-box{ flex:0 0 auto; max-width:300px; background:var(--accent-soft); border-radius:12px; padding:12px 15px; font-size:13px; line-height:1.5; color:var(--ink-soft); }
+  .goal-box b{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:4px; font-weight:700; }
+
+  .tiers-nav{ display:flex; gap:6px; margin-bottom:16px; flex-wrap:wrap; }
+  .tiers-nav button{ all:unset; cursor:pointer; font-size:12.5px; font-weight:600; letter-spacing:.02em; padding:8px 14px; border:1px solid var(--line); border-radius:20px; color:var(--ink-soft); background:#fff; }
+  .tiers-nav button .n{ color:var(--seal); margin-right:6px; font-weight:800; }
+  .tiers-nav button.active{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .tiers-nav button.active .n{ color:#fff; }
+
+  .tier-panel{ display:none; }
+  .tier-panel.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+
+  .text-tabs{ display:flex; gap:6px; margin-bottom:14px; }
+  .text-tabs button{ all:unset; cursor:pointer; flex:1; text-align:center; font-size:12.5px; font-weight:700; padding:9px 6px; border:1px solid var(--accent); border-radius:10px; color:var(--accent); }
+  .text-tabs button.active{ background:var(--accent); color:#fff; }
+  .text-panel{ display:none; border:1px solid var(--line); border-radius:14px; background:var(--paper); padding:20px 22px; }
+  .text-panel.active{ display:block; animation:fade .2s ease; }
+  .scene{ font-size:13px; font-style:italic; color:var(--ink-soft); margin-bottom:16px; padding-bottom:12px; border-bottom:1px dashed var(--line); }
+
+  .dialogue-wrap{ display:flex; flex-direction:column; gap:14px; }
+  .d-row{ display:flex; align-items:flex-start; gap:12px; }
+  .avatar-fallback{ width:34px; height:34px; border-radius:50%; flex:0 0 auto; display:flex; align-items:center; justify-content:center; border:2px solid var(--seal); background:var(--paper-2); color:var(--seal); font-weight:800; font-size:13px; box-sizing:border-box; }
+  .d-bubble{ flex:1 1 auto; min-width:0; background:#fff; border:2px solid var(--line); border-radius:14px; padding:13px 18px 12px; }
+  .d-bubble .who{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; margin-bottom:3px; opacity:.85; }
+  .d-bubble .h{ font-size:24px; font-weight:700; color:var(--ink); line-height:1.45; }
+  .d-bubble .pv{ margin-top:5px; }
+  .d-bubble .p{ font-size:14.5px; color:var(--accent); font-weight:600; letter-spacing:.02em; }
+  .d-bubble .v{ font-size:13.5px; color:var(--ink-soft); font-style:italic; margin-top:2px; }
+  .dialogue-wrap.pv-hidden .pv{ display:none; }
+
+  .audio-box{ display:flex; align-items:center; gap:14px; background:#eaf1fb; border-radius:12px; padding:14px 18px; margin-bottom:16px; }
+  .audio-box .ab-icon{ font-size:22px; flex:0 0 auto; opacity:.75; }
+  .audio-box .ab-body{ flex:1 1 auto; min-width:0; }
+  .audio-box .ab-label{ font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:#3b5c96; margin-bottom:6px; }
+  .audio-box audio{ width:100%; height:32px; }
+  .audio-hint{ font-size:12.5px; color:var(--ink-soft); margin:-6px 0 16px; padding-bottom:12px; border-bottom:1px dashed var(--line); }
+  .tier-head-actions{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .pv-toggle-btn{ all:unset; cursor:pointer; font-size:11.5px; font-weight:700; padding:6px 13px; border:1px solid var(--accent); border-radius:20px; color:var(--accent); background:#fff; }
+  .pv-toggle-btn:hover{ background:var(--accent); color:#fff; }
+  .badge-online{ font-size:10px; letter-spacing:.06em; font-weight:700; background:var(--accent); color:#fff; padding:4px 10px; border-radius:20px; }
+
+  .tier-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:10px;}
+  .tier-head h3{ font-weight:700; font-size:19px; margin:0; color:var(--ink); }
+  .panel-box{ border:1px solid var(--line); border-radius:14px; padding:22px; background:var(--paper); }
+  .draw-split{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .draw-col{ display:flex; flex-direction:column; }
+  .draw-col-label{ font-weight:700; font-size:14.5px; color:var(--ink); margin-bottom:8px; }
+  .scenario-stamp{ border-color:var(--accent); color:var(--accent); }
+  @media (max-width:840px){ .draw-split{ grid-template-columns:1fr; } }
+  .draw-zone{ display:flex; flex-direction:column; align-items:center; gap:16px; padding:8px 0 2px; }
+  .draw-hint{ font-size:13.5px; color:var(--ink-soft); text-align:left; margin-bottom:6px; }
+  .stamp{ all:unset; cursor:pointer; width:112px; height:112px; border-radius:50%; border:4px solid var(--seal); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--seal); letter-spacing:.05em; transition:transform .12s ease; background:#fff; }
+  .stamp:hover{ transform:scale(1.04); }
+  .stamp.stamping{ animation:press .35s ease; }
+  @keyframes press{ 0%{transform:scale(1);} 40%{transform:scale(.88) rotate(-4deg);} 100%{transform:scale(1);} }
+  .draw-result{ min-height:60px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border:2px dashed var(--accent); border-radius:12px; padding:14px 20px; width:100%; max-width:460px; background:#fff; gap:4px; }
+  .draw-result.empty{ color:var(--muted); font-size:13.5px; font-style:italic; font-weight:400; }
+  .draw-result .dr-h{ font-size:30px; font-weight:700; color:var(--ink); display:block; }
+  .draw-result .dr-p{ font-size:15px; font-weight:600; color:var(--accent); display:block; }
+  .draw-result .dr-v{ font-size:14px; color:var(--ink-soft); font-style:italic; display:block; }
+  .draw-result .dr-label{ font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); display:block; margin-top:2px; }
+  .dr-answer-wrap{ display:flex; flex-direction:column; align-items:center; gap:4px; margin-top:6px; }
+  .reveal-hidden{ display:none !important; }
+  .reveal-chip{ all:unset; cursor:pointer; font-size:12px; font-weight:700; color:var(--accent); border:1px dashed var(--accent); border-radius:20px; padding:6px 14px; }
+  .reveal-chip:hover{ background:var(--accent); color:#fff; }
+  .jump-chip{ all:unset; cursor:pointer; margin-top:8px; font-size:11.5px; font-weight:700; color:var(--accent); border:1px solid var(--accent); border-radius:20px; padding:5px 12px; }
+  .jump-chip:hover{ background:var(--accent); color:#fff; }
+  .scenario-tag{ display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.06em; color:#fff; background:var(--accent); border-radius:20px; padding:3px 10px; margin-bottom:8px; }
+
+  .task-line{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-bottom:16px; padding-bottom:14px; border-bottom:1px dashed var(--line); }
+  .task-line b{ color:var(--accent); }
+  .steps-frame{ display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+  .step-row{ display:flex; gap:16px; align-items:flex-start; background:#fff; border:1px solid var(--line); border-radius:10px; padding:13px 17px; }
+  .step-label{ flex:0 0 auto; min-width:130px; font-weight:800; font-size:12.5px; color:var(--accent); letter-spacing:.02em; padding-top:3px; }
+  .step-content{ font-size:15.5px; line-height:1.65; color:var(--ink); }
+  .timer-block{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .timer-display{ font-size:30px; font-weight:700; background:var(--ink); color:#fff; padding:7px 18px; border-radius:10px; min-width:104px; text-align:center; }
+  .timer-controls{ display:flex; gap:7px; flex-wrap:wrap; }
+  .timer-controls button{ all:unset; cursor:pointer; font-size:11.5px; font-weight:600; border:1px solid var(--line); padding:7px 11px; border-radius:20px; color:var(--ink-soft); background:#fff; }
+  .timer-controls button.primary{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .timer-controls button.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  .hint-box{ background:#FFF7E3; border:1px dashed #D9B65C; border-radius:8px; padding:12px 15px; font-size:13.5px; line-height:1.55; color:var(--ink-soft); margin-bottom:16px; }
+  .hint-box b{ color:#8A6A16; }
+
+  .note{ margin-top:20px; font-size:12px; color:var(--muted); border-top:1px dashed var(--line); padding-top:12px; }
+  .note b{ color:var(--seal); }
+
+  .site-footer{ max-width:1100px; margin:0 auto; padding:0 22px 40px; text-align:center; }
+  .site-footer p{ font-size:12.5px; color:var(--muted); }
+
+  .float-timer{ position:fixed; right:16px; bottom:16px; z-index:50; background:var(--ink); color:#fff; border-radius:30px; box-shadow:var(--shadow); padding:9px 13px; display:flex; align-items:center; gap:9px; font-size:12.5px; }
+  .float-timer.collapsed .ft-body{ display:none; }
+  .float-timer .ft-toggle{ all:unset; cursor:pointer; color:#FBE3C7; font-size:15px; line-height:1; }
+  .float-timer .ft-body{ display:flex; align-items:center; gap:7px; }
+  .float-timer button.ft-btn{ all:unset; cursor:pointer; border:1px solid rgba(255,255,255,.4); border-radius:14px; padding:4px 8px; font-size:10.5px; color:#fff; font-weight:600; }
+  .float-timer .ft-time{ min-width:48px; text-align:center; font-size:15px; color:#fff; font-weight:700; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+
+  html.fake-fullscreen{ position:fixed; inset:0; width:100%; height:100%; }
+  html.fake-fullscreen body{ position:fixed; inset:0; width:100%; height:100%; margin:0; overflow-y:auto; z-index:2147483647; }
+
+  body.presentation .hero{ padding:20px 24px 24px; }
+  body.presentation .hero .brand-bar, body.presentation .hero p.lede{ display:none; }
+  body.presentation .hero-inner, body.presentation .control-bar-inner, body.presentation .app, body.presentation .site-footer{ max-width:1500px; }
+  body.presentation .hero h1{ font-size:clamp(24px,3.2vw,30px); margin:0; }
+  body.presentation .hero::before{ font-size:160px; }
+  body.presentation .site-footer, body.presentation .note{ display:none; }
+  body.presentation .card{ padding:40px clamp(24px,5vw,64px) 48px; }
+  body.presentation .hanzi-title{ font-size:clamp(46px,5.6vw,70px); }
+  body.presentation .pinyin{ font-size:clamp(20px,2.2vw,26px); }
+  body.presentation .meaning{ font-size:clamp(18px,2vw,23px); }
+  body.presentation .goal-box{ font-size:clamp(16px,1.7vw,19px); max-width:460px; }
+  body.presentation .tier-head h3{ font-size:clamp(24px,2.6vw,32px); }
+  body.presentation .tiers-nav button{ font-size:clamp(16px,1.7vw,20px); padding:12px 22px; }
+  body.presentation .text-tabs button{ font-size:clamp(16px,1.7vw,20px); padding:14px 10px; }
+  body.presentation .d-bubble .h{ font-size:clamp(30px,3.4vw,40px); }
+  body.presentation .d-bubble .p{ font-size:clamp(17px,1.9vw,22px); }
+  body.presentation .d-bubble .v{ font-size:clamp(15px,1.7vw,19px); }
+  body.presentation .avatar-fallback{ width:clamp(46px,5vw,54px); height:clamp(46px,5vw,54px); font-size:clamp(17px,1.9vw,20px); }
+  body.presentation .d-bubble{ padding:20px 26px 19px; }
+  body.presentation .audio-box{ padding:16px 20px; }
+  body.presentation .audio-box .ab-label{ font-size:clamp(14px,1.5vw,16px); }
+  body.presentation .audio-hint{ font-size:clamp(15px,1.6vw,18px); }
+  body.presentation .pv-toggle-btn{ font-size:16px; padding:10px 18px; }
+  body.presentation .badge-online{ font-size:14px; padding:6px 14px; }
+  body.presentation .scene{ font-size:16px; }
+  body.presentation .draw-col-label{ font-size:20px; }
+  body.presentation .draw-hint{ font-size:17px; }
+  body.presentation .stamp{ width:132px; height:132px; font-size:16px; }
+  body.presentation .draw-result .dr-h{ font-size:44px; }
+  body.presentation .draw-result .dr-p{ font-size:22px; }
+  body.presentation .draw-result .dr-v{ font-size:18px; }
+  body.presentation .scenario-tag{ font-size:14px; padding:5px 14px; }
+  body.presentation .reveal-chip{ font-size:15px; padding:8px 16px; }
+  body.presentation .jump-chip{ font-size:15px; padding:8px 18px; }
+  body.presentation .task-line{ font-size:20px; }
+  body.presentation .step-label{ font-size:17px; min-width:170px; }
+  body.presentation .step-content{ font-size:22px; line-height:1.7; }
+  body.presentation .hint-box{ font-size:18px; line-height:1.7; }
+  body.presentation .timer-display{ font-size:44px; padding:10px 26px; }
+  body.presentation .timer-controls button{ font-size:16px; padding:11px 18px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand-bar">
+      <span class="brand-mark">口语</span>
+      <span class="brand-name">LUYỆN NÓI · BOYA SƠ CẤP 1</span>
+    </div>
+    <h1>Bài 2 · <span class="cn">我来介绍一下儿</span></h1>
+    <p class="lede">Bám sát nguyên văn 2 bài khoá của Bài 2 (Boya Sơ Cấp 1), kèm hoạt động bốc thăm — tình huống — nói tự do, thiết kế để trình chiếu trực tiếp trên lớp (dùng được cả khi dạy online).</p>
+  </div>
+</header>
+
+<div class="control-bar" id="controlBar">
+  <div class="control-bar-inner">
+    <button class="ctrl-btn" id="presentToggle">🖥️ Chế độ trình chiếu</button>
+    <button class="ctrl-btn" id="fullscreenToggle">⛶ Toàn màn hình</button>
+  </div>
+</div>
+
+<div class="app">
+  <div class="card" data-tier="0">
+    <div class="lesson-head">
+      <div>
+        <span class="lesson-tag"><span class="stamp-badge">02</span>Bài 2 / 20</span>
+        <h2 class="hanzi-title cn">我来介绍一下儿</h2>
+        <div class="pinyin">Wǒ lái jièshào yíxiàr</div>
+        <div class="meaning">Để tôi giới thiệu một chút</div>
+      </div>
+      <div class="goal-box"><b>Mục tiêu giao tiếp</b>Giới thiệu bản thân/người khác (họ, tên), hỏi và trả lời quốc tịch, bày tỏ vui mừng khi làm quen.</div>
+    </div>
+
+    <div class="tiers-nav" id="tiersNav">
+      <button data-tier="0" class="active"><span class="n">01</span>模仿 · Bài khoá</button>
+      <button data-tier="1"><span class="n">02</span>引导 · Bốc thăm</button>
+      <button data-tier="2"><span class="n">03</span>自由 · Tự do</button>
+    </div>
+
+    <!-- TIER 0: BÀI KHOÁ -->
+    <div class="tier-panel active" data-panel="0">
+      <div class="tier-head">
+        <h3>2 bài khoá — Đọc theo</h3>
+        <div class="tier-head-actions">
+          <button id="togglePV" class="pv-toggle-btn">👁️ Hiện phiên âm &amp; nghĩa</button>
+          <span class="badge-online">Online: bật mic đọc phân vai qua Zoom</span>
+        </div>
+      </div>
+      <div class="text-tabs" id="textTabs">
+        <button data-t="0" class="active">课文1</button>
+        <button data-t="1">课文2</button>
+      </div>
+
+      <div class="text-panel active" data-tp="0">
+        <div class="scene">Cô giáo Lưu vào lớp, chào và tự giới thiệu với học sinh.</div>
+        <div class="audio-box">
+          <span class="ab-icon">🎧</span>
+          <div class="ab-body">
+            <div class="ab-label">File nghe gốc</div>
+            <audio controls preload="none" src="bai2-baikhoa1.mp3">Trình duyệt của bạn không hỗ trợ phát audio.</audio>
+          </div>
+        </div>
+        <div class="audio-hint">Gợi ý: nghe file gốc trước để lấy chuẩn phát âm, sau đó chỉ định 2 học viên đọc phân vai theo đúng lời thoại trên, đổi vai sau mỗi lượt.</div>
+        <div class="dialogue-wrap pv-hidden" id="dlg0"></div>
+      </div>
+      <div class="text-panel" data-tp="1">
+        <div class="scene">Đại Vệ giới thiệu Mary và Lý Quân với nhau lần đầu gặp mặt.</div>
+        <div class="audio-box">
+          <span class="ab-icon">🎧</span>
+          <div class="ab-body">
+            <div class="ab-label">File nghe gốc</div>
+            <audio controls preload="none" src="bai2-baikhoa2.mp3">Trình duyệt của bạn không hỗ trợ phát audio.</audio>
+          </div>
+        </div>
+        <div class="audio-hint">Gợi ý: nghe file gốc trước để lấy chuẩn phát âm, sau đó chỉ định 2 học viên đọc phân vai theo đúng lời thoại trên, đổi vai sau mỗi lượt.</div>
+        <div class="dialogue-wrap pv-hidden" id="dlg1"></div>
+      </div>
+    </div>
+
+    <!-- TIER 1: BỐC THĂM -->
+    <div class="tier-panel" data-panel="1">
+      <div class="tier-head"><h3>Bốc thăm — 抽签</h3><span class="badge-online">Online: dùng nút bốc thăm này thay rút thẻ giấy</span></div>
+      <div class="draw-split">
+        <div class="panel-box draw-col">
+          <div class="draw-col-label">📚 Kho từ vựng — Bài 2</div>
+          <p class="draw-hint">Bốc ngẫu nhiên 1 mục trong <b>toàn bộ kho từ Bài 2</b> (từ thường + tên riêng trộn lẫn), đặt câu hoặc dịch nhanh sang tiếng Việt. <em>(23 thẻ — gồm 22 từ trong bài + 1 từ bổ sung "越南" theo yêu cầu giáo viên.)</em></p>
+          <div class="draw-zone">
+            <button class="stamp" id="stampBtnVocab">BỐC<br>TỪ</button>
+            <div class="draw-result empty" id="drawResultVocab">Bấm con dấu để bốc 1 từ ngẫu nhiên…</div>
+          </div>
+        </div>
+        <div class="panel-box draw-col">
+          <div class="draw-col-label">💬 Tình huống luyện nói</div>
+          <p class="draw-hint">Bốc 1 trong 5 tình huống — mỗi tình huống khớp với 课文1 hoặc 课文2. Dùng lại mẫu câu của đoạn đó để xử lý tình huống.</p>
+          <div class="draw-zone">
+            <button class="stamp scenario-stamp" id="stampBtnScenario">BỐC<br>TÌNH HUỐNG</button>
+            <div class="draw-result empty" id="drawResultScenario">Bấm con dấu để bốc 1 tình huống ngẫu nhiên…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER 2: TỰ DO -->
+    <div class="tier-panel" data-panel="2">
+      <div class="tier-head"><h3>Tự do — Vận dụng</h3><span class="badge-online">Online: dùng phòng riêng (breakout room) theo cặp</span></div>
+
+      <div class="text-tabs" id="freeTabs">
+        <button data-f="0" class="active">Tình huống 1 · Trong lớp</button>
+        <button data-f="1">Tình huống 2 · Canteen/hành lang</button>
+      </div>
+
+      <!-- TÌNH HUỐNG 1: trong lớp, có giáo viên giới thiệu -->
+      <div class="text-panel active" data-fp="0">
+        <div class="panel-box">
+          <div class="task-line"><b>Nhiệm vụ:</b> Ghép nhóm 3 người (A giới thiệu B và C với nhau) hoặc bắt cặp phỏng vấn nhau bằng các mẫu câu của Bài 2.</div>
+          <div class="steps-frame">
+            <div class="step-row"><div class="step-label">① Mở đầu</div><div class="step-content">A nói: <b class="cn">“我来介绍一下儿。”</b> rồi giới thiệu tên của B và C: <b class="cn">“她叫______，他叫______。”</b></div></div>
+            <div class="step-row"><div class="step-label">② Trao đổi chính</div><div class="step-content">B nói: <b class="cn">“认识你很高兴。”</b> — C đáp: <b class="cn">“我也很高兴。”</b><br>B hỏi: <b class="cn">“你是哪国人？”</b> — C trả lời: <b class="cn">“我是______人。”</b></div></div>
+            <div class="step-row"><div class="step-label">③ Mở rộng</div><div class="step-content">C hỏi lại B bằng <b class="cn">“你呢？”</b> — B trả lời quốc tịch của mình, có thể dùng thêm <b class="cn">“你叫什么名字？”</b> để hỏi tên nếu chưa biết.</div></div>
+            <div class="step-row"><div class="step-label">④ Kết thúc</div><div class="step-content">Cả nhóm chào tạm biệt bằng <b class="cn">“谢谢，认识你们很高兴。”</b></div></div>
+          </div>
+          <div class="hint-box">💡 <b>Cấu trúc trọng tâm của bài:</b> <span class="cn">我来介绍一下儿</span> → dùng để mở lời giới thiệu &nbsp;|&nbsp; <span class="cn">我姓……，叫……</span> → nói họ và tên đầy đủ &nbsp;|&nbsp; <span class="cn">你是哪国人？</span> → 我是……人 &nbsp;|&nbsp; <span class="cn">……吗？</span> / <span class="cn">……呢？</span> → hai cách hỏi lại (hỏi có/không và hỏi ngược lại)</div>
+          <div class="timer-block">
+            <div class="timer-display" id="tDisplay">01:00</div>
+            <div class="timer-controls">
+              <button data-preset="60" class="active">1 phút</button>
+              <button data-preset="120">2 phút</button>
+              <button data-preset="180">3 phút</button>
+              <button id="tStart" class="primary">▶ Bắt đầu</button>
+              <button id="tReset">↺ Đặt lại</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TÌNH HUỐNG 2: gặp ở canteen/hành lang, không có giáo viên -->
+      <div class="text-panel" data-fp="1">
+        <div class="panel-box">
+          <div class="task-line"><b>Nhiệm vụ:</b> Bắt cặp A–B tự làm quen trước ở canteen/hành lang, sau đó ghép thêm C vào giữa chừng.</div>
+          <div class="steps-frame">
+            <div class="step-row"><div class="step-label">① Bắt chuyện</div><div class="step-content">A chủ động hỏi: <b class="cn">“你好！你叫什么名字？”</b> — B trả lời: <b class="cn">“我叫______。”</b></div></div>
+            <div class="step-row"><div class="step-label">② Hỏi quốc tịch</div><div class="step-content">A hỏi: <b class="cn">“你是哪国人？”</b> — B trả lời: <b class="cn">“我是______人。”</b>, rồi hỏi ngược lại: <b class="cn">“你呢？”</b> — A trả lời quốc tịch của mình.</div></div>
+            <div class="step-row"><div class="step-label">③ Người thứ ba xuất hiện</div><div class="step-content">C bước tới, A giới thiệu: <b class="cn">“我来介绍一下儿，他/她叫______。”</b></div></div>
+            <div class="step-row"><div class="step-label">④ C làm quen với B</div><div class="step-content">C nói: <b class="cn">“认识你很高兴。”</b> — B đáp: <b class="cn">“我也很高兴。”</b>, rồi C hỏi B: <b class="cn">“你是学生吗？”</b> — B trả lời: <b class="cn">“是，我是学生。”</b> hoặc <b class="cn">“不是，我不是学生。”</b></div></div>
+            <div class="step-row"><div class="step-label">⑤ Kết thúc</div><div class="step-content">Cả ba nói: <b class="cn">“谢谢，认识你们很高兴。”</b></div></div>
+          </div>
+          <div class="hint-box">💡 <b>Cấu trúc trọng tâm của bài:</b> <span class="cn">你好！你叫什么名字？</span> → 我叫…… &nbsp;|&nbsp; <span class="cn">你是哪国人？</span> → 我是……人 &nbsp;|&nbsp; <span class="cn">你呢？</span> → hỏi ngược lại &nbsp;|&nbsp; <span class="cn">我来介绍一下儿</span> → giới thiệu người thứ ba &nbsp;|&nbsp; <span class="cn">你是……吗？</span> → 是，我是…… / 不是，我不是…… <em>(ôn lại từ Bài 1)</em></div>
+          <div class="timer-block">
+            <div class="timer-display" id="tDisplay2">01:00</div>
+            <div class="timer-controls">
+              <button data-preset2="60" class="active">1 phút</button>
+              <button data-preset2="120">2 phút</button>
+              <button data-preset2="180">3 phút</button>
+              <button id="tStart2" class="primary">▶ Bắt đầu</button>
+              <button id="tReset2">↺ Đặt lại</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>Mẹo giảng dạy:</b> mở tab "Bài khoá" trước để cả lớp đọc phân vai xong cả 2 hội thoại, rồi mới chuyển sang tab "Bốc thăm" và "Tự do" để luyện phản xạ nói. Ở tab "Tự do", có thể cho luyện lần lượt cả 2 tình huống hoặc chia mỗi nhóm 1 tình huống rồi đổi chéo. Dạy online: dùng breakout room ở tab "Tự do".</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>Tài liệu luyện nói bám sát giáo trình <b>Boya Sơ Cấp 1</b> — Bài 2 我来介绍一下儿</p>
+</footer>
+
+<div class="float-timer collapsed" id="floatTimer">
+  <button class="ft-toggle" id="ftToggle" title="Bộ đếm giờ chung của lớp" aria-label="Mở/thu gọn bộ đếm giờ">⏱</button>
+  <div class="ft-body">
+    <span class="ft-time" id="ftDisplay">01:00</span>
+    <button class="ft-btn" data-ft="dec">−30s</button>
+    <button class="ft-btn" data-ft="inc">+30s</button>
+    <button class="ft-btn" data-ft="start">Bắt đầu</button>
+    <button class="ft-btn" data-ft="reset">↺</button>
+  </div>
+</div>
+
+<script>
+/* ===== DỮ LIỆU BÀI 2 — Boya Sơ Cấp 1 (đối chiếu nguyên văn với ảnh giáo trình) ===== */
+
+// 课文1 — giữ nguyên 100% chữ Hán, không thêm/bớt/đổi câu
+const TEXT1 = [
+  { spk:"刘老师", h:"同学们好！", p:"Tóngxuémen hǎo!", v:"Chào các em!" },
+  { spk:"学生", h:"老师好！", p:"Lǎoshī hǎo!", v:"Chào cô ạ!" },
+  { spk:"刘老师", h:"我来介绍一下儿，我姓刘，叫刘明，是你们的老师。你叫什么名字？", p:"Wǒ lái jièshào yíxiàr, wǒ xìng Liú, jiào Liúmíng, shì nǐmen de lǎoshī. Nǐ jiào shénme míngzi?", v:"Để cô giới thiệu một chút, cô họ Lưu, tên Lưu Minh, là giáo viên của các em. Em tên là gì?" },
+  { spk:"大卫", h:"我叫大卫。", p:"Wǒ jiào Dàwèi.", v:"Em tên là Đại Vệ." },
+  { spk:"刘老师", h:"你是哪国人？", p:"Nǐ shì nǎ guó rén?", v:"Em là người nước nào?" },
+  { spk:"大卫", h:"我是美国人。", p:"Wǒ shì Měiguó rén.", v:"Em là người Mỹ." }
+];
+
+// 课文2 — giữ nguyên 100% chữ Hán, không thêm/bớt/đổi câu
+const TEXT2 = [
+  { spk:"大卫", h:"我来介绍一下儿。她叫玛丽，他叫李军。", p:"Wǒ lái jièshào yíxiàr. Tā jiào Mǎlì, tā jiào Lǐjūn.", v:"Để tôi giới thiệu một chút. Cô ấy tên Mary, anh ấy tên Lý Quân." },
+  { spk:"玛丽", h:"认识你很高兴。", p:"Rènshi nǐ hěn gāoxìng.", v:"Rất vui được quen bạn." },
+  { spk:"李军", h:"我也很高兴。你是美国人吗？", p:"Wǒ yě hěn gāoxìng. Nǐ shì Měiguó rén ma?", v:"Tôi cũng rất vui. Bạn là người Mỹ phải không?" },
+  { spk:"玛丽", h:"不，我不是美国人，我是加拿大人，你呢？", p:"Bù, wǒ bú shì Měiguó rén, wǒ shì Jiānádà rén, nǐ ne?", v:"Không, tôi không phải người Mỹ, tôi là người Canada, còn bạn?" },
+  { spk:"李军", h:"我是中国人。", p:"Wǒ shì Zhōngguó rén.", v:"Tôi là người Trung Quốc." }
+];
+
+// Màu phân biệt theo nhân vật (chỉ để tô viền/tên — không phải avatar ảnh)
+const SPEAKER_COLOR = { "刘老师":"#A8352F", "学生":"#7C7A6E", "大卫":"#2F6E5D", "玛丽":"#B4622E", "李军":"#A8352F" };
+const DEFAULT_COLOR = "#2E6DB4";
+
+// KHO TỪ VỰNG BÀI 2 — 1 KHO DUY NHẤT, TRỘN LẪN (không chia nhóm)
+// Đối chiếu 3 bảng 生词 trong ảnh giáo trình (từ thường nhóm 1 + nhóm 2 + Tên riêng).
+// 越南 là từ được bổ sung thêm theo yêu cầu của giáo viên (không có trong ảnh gốc),
+// đánh dấu extra:true để lưu ý khi bốc trúng.
+const VOCAB_POOL = [
+  { h:"同学", p:"tóngxué", v:"bạn học" },
+  { h:"们", p:"men", v:"(hậu tố số nhiều, chỉ người)" },
+  { h:"来", p:"lái", v:"đến, tới" },
+  { h:"介绍", p:"jièshào", v:"giới thiệu" },
+  { h:"一下儿", p:"yíxiàr", v:"một chút, một lát" },
+  { h:"姓", p:"xìng", v:"họ (là), mang họ" },
+  { h:"的", p:"de", v:"(trợ từ sở hữu/định ngữ)" },
+  { h:"哪", p:"nǎ", v:"nào" },
+  { h:"国", p:"guó", v:"nước, quốc gia" },
+  { h:"人", p:"rén", v:"người" },
+  { h:"他", p:"tā", v:"anh ấy" },
+  { h:"认识", p:"rènshi", v:"quen biết, nhận biết" },
+  { h:"很", p:"hěn", v:"rất" },
+  { h:"高兴", p:"gāoxìng", v:"vui, vui mừng" },
+  { h:"也", p:"yě", v:"cũng" },
+  { h:"呢", p:"ne", v:"(trợ từ nghi vấn, hỏi lại)" },
+  { h:"刘", p:"Liú", v:"Lưu (họ)" },
+  { h:"刘明", p:"Liúmíng", v:"Lưu Minh (tên riêng)" },
+  { h:"美国", p:"Měiguó", v:"nước Mỹ" },
+  { h:"玛丽", p:"Mǎlì", v:"Mary (tên riêng)" },
+  { h:"加拿大", p:"Jiānádà", v:"Canada" },
+  { h:"中国", p:"Zhōngguó", v:"Trung Quốc" },
+  { h:"越南", p:"Yuènán", v:"Việt Nam", extra:true }
+];
+
+// 5 tình huống luyện nói — chỉ dùng từ vựng/mẫu câu trong phạm vi Bài 2
+const SCENARIOS = [
+  { v:"Bạn là giáo viên mới, hãy tự giới thiệu họ tên của mình với cả lớp.", sample:"我来介绍一下儿，我姓刘，叫刘明。", t:0 },
+  { v:"Bạn muốn hỏi một người bạn mới quen tên là gì.", sample:"你叫什么名字？", t:0 },
+  { v:"Bạn muốn hỏi một người bạn là người nước nào.", sample:"你是哪国人？", t:0 },
+  { v:"Hãy giới thiệu hai người bạn với nhau (dùng “她叫……，他叫……”).", sample:"我来介绍一下儿。她叫玛丽，他叫李军。", t:1 },
+  { v:"Bạn vừa quen một người bạn mới và người đó hỏi lại “你呢？”. Hãy trả lời bạn là người Việt Nam.", sample:"我是越南人。", t:1 }
+];
+
+function renderDialogue(containerId, lines){
+  const el = document.getElementById(containerId);
+  el.innerHTML = lines.map(l=>{
+    const color = SPEAKER_COLOR[l.spk] || DEFAULT_COLOR;
+    return `
+    <div class="d-row">
+      <div class="avatar-fallback" style="border-color:${color};color:${color}" title="${l.spk}">${l.spk.charAt(0)}</div>
+      <div class="d-bubble" style="border-color:${color}">
+        <div class="who cn" style="color:${color}">${l.spk}</div>
+        <div class="h cn">${l.h}</div>
+        <div class="pv">
+          <div class="p">${l.p}</div>
+          <div class="v">${l.v}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+renderDialogue('dlg0', TEXT1);
+renderDialogue('dlg1', TEXT2);
+
+// ---------- Toggle hiện/ẩn phiên âm & nghĩa ----------
+let showPV = false;
+const togglePVBtn = document.getElementById('togglePV');
+togglePVBtn.addEventListener('click', ()=>{
+  showPV = !showPV;
+  document.querySelectorAll('.dialogue-wrap').forEach(d=>d.classList.toggle('pv-hidden', !showPV));
+  togglePVBtn.textContent = showPV ? '🙈 Ẩn phiên âm & nghĩa' : '👁️ Hiện phiên âm & nghĩa';
+});
+
+// ---------- Tier tabs (01/02/03) ----------
+const card = document.querySelector('.card');
+document.querySelectorAll('#tiersNav button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const tier = b.dataset.tier;
+    card.setAttribute('data-tier', tier);
+    document.querySelectorAll('#tiersNav button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.querySelectorAll('.tier-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelector(`.tier-panel[data-panel="${tier}"]`).classList.add('active');
+  });
+});
+
+// ---------- 课文1 / 课文2 sub-tabs ----------
+const textTabsScope = document.querySelector('.tier-panel[data-panel="0"]');
+document.querySelectorAll('#textTabs button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const t = b.dataset.t;
+    document.querySelectorAll('#textTabs button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    textTabsScope.querySelectorAll('.text-panel').forEach(p=>p.classList.remove('active'));
+    textTabsScope.querySelector(`.text-panel[data-tp="${t}"]`).classList.add('active');
+  });
+});
+
+// ---------- Tình huống 1 / Tình huống 2 sub-tabs (tab Tự do) ----------
+const freeTabsScope = document.querySelector('.tier-panel[data-panel="2"]');
+document.querySelectorAll('#freeTabs button').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    const f = b.dataset.f;
+    document.querySelectorAll('#freeTabs button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    freeTabsScope.querySelectorAll('.text-panel').forEach(p=>p.classList.remove('active'));
+    freeTabsScope.querySelector(`.text-panel[data-fp="${f}"]`).classList.add('active');
+  });
+});
+
+// ---------- Bốc thăm — Khu 1: Ôn từ vựng (1 kho duy nhất, trộn lẫn, không lặp liên tiếp) ----------
+let vocabBag = [];
+function refillVocabBag(){
+  vocabBag = [...VOCAB_POOL];
+  for(let i=vocabBag.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [vocabBag[i],vocabBag[j]] = [vocabBag[j],vocabBag[i]];
+  }
+}
+refillVocabBag();
+const stampBtnVocab = document.getElementById('stampBtnVocab');
+const drawResultVocab = document.getElementById('drawResultVocab');
+stampBtnVocab.addEventListener('click', ()=>{
+  stampBtnVocab.classList.remove('stamping'); void stampBtnVocab.offsetWidth; stampBtnVocab.classList.add('stamping');
+  if(vocabBag.length===0) refillVocabBag();
+  const pick = vocabBag.pop();
+  drawResultVocab.classList.remove('empty');
+  drawResultVocab.innerHTML = `<span class="dr-h cn">${pick.h}</span>
+    <span class="dr-answer-wrap">
+      <button class="reveal-chip" type="button">👁️ Xem đáp án</button>
+      <span class="dr-p reveal-hidden">${pick.p}</span>
+      <span class="dr-v reveal-hidden">${pick.v}</span>
+    </span>`;
+  const revealBtn = drawResultVocab.querySelector('.reveal-chip');
+  revealBtn.addEventListener('click', ()=>{
+    drawResultVocab.querySelectorAll('.reveal-hidden').forEach(el=>el.classList.remove('reveal-hidden'));
+    revealBtn.remove();
+  });
+});
+
+// ---------- Bốc thăm — Khu 2: Tình huống luyện nói ----------
+let situBag = [];
+function refillSituBag(){
+  situBag = SCENARIOS.map((_,i)=>i);
+  for(let i=situBag.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [situBag[i],situBag[j]] = [situBag[j],situBag[i]];
+  }
+}
+refillSituBag();
+const stampBtnScenario = document.getElementById('stampBtnScenario');
+const drawResultScenario = document.getElementById('drawResultScenario');
+stampBtnScenario.addEventListener('click', ()=>{
+  stampBtnScenario.classList.remove('stamping'); void stampBtnScenario.offsetWidth; stampBtnScenario.classList.add('stamping');
+  if(situBag.length===0) refillSituBag();
+  const idx = situBag.pop();
+  const pick = SCENARIOS[idx];
+  drawResultScenario.classList.remove('empty');
+  drawResultScenario.innerHTML = `
+    <span class="dr-v" style="font-size:16px;font-style:normal;color:var(--ink);font-weight:600;">${pick.v}</span>
+    <span class="dr-answer-wrap">
+      <button class="reveal-chip" type="button">👁️ Xem đáp án (giáo viên)</button>
+      <span class="scenario-tag reveal-hidden">Khớp với 课文${pick.t+1}</span>
+      <span class="dr-label reveal-hidden">Gợi ý mẫu câu</span>
+      <span class="dr-p cn reveal-hidden" style="font-size:20px;">${pick.sample}</span>
+    </span>`;
+  const revealBtn = drawResultScenario.querySelector('.reveal-chip');
+  revealBtn.addEventListener('click', ()=>{
+    drawResultScenario.querySelectorAll('.reveal-hidden').forEach(el=>el.classList.remove('reveal-hidden'));
+    revealBtn.remove();
+  });
+});
+
+// ---------- Timer tab Tự do (dùng chung cho cả Tình huống 1 và 2) ----------
+function initFreeTimer(displayId, startId, resetId, presetAttr){
+  let seconds = 60, running=false, intervalId=null;
+  const display = document.getElementById(displayId);
+  const startBtn = document.getElementById(startId);
+  const resetBtn = document.getElementById(resetId);
+  const presets = document.querySelectorAll(`.timer-controls [${presetAttr}]`);
+  function paint(){
+    const m = Math.floor(seconds/60).toString().padStart(2,'0');
+    const s = (seconds%60).toString().padStart(2,'0');
+    display.textContent = `${m}:${s}`;
+  }
+  presets.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      presets.forEach(x=>x.classList.remove('active'));
+      btn.classList.add('active');
+      seconds = parseInt(btn.getAttribute(presetAttr),10);
+      paint(); clearInterval(intervalId); running=false; startBtn.textContent='▶ Bắt đầu';
+    });
+  });
+  startBtn.addEventListener('click', ()=>{
+    if(running){ clearInterval(intervalId); running=false; startBtn.textContent='▶ Tiếp tục'; return; }
+    running = true; startBtn.textContent='⏸ Tạm dừng';
+    intervalId = setInterval(()=>{
+      if(seconds>0){ seconds--; paint(); }
+      else{ clearInterval(intervalId); running=false; startBtn.textContent='▶ Bắt đầu'; }
+    },1000);
+  });
+  resetBtn.addEventListener('click', ()=>{
+    clearInterval(intervalId); running=false; startBtn.textContent='▶ Bắt đầu';
+    const activePreset = document.querySelector(`.timer-controls [${presetAttr}].active`);
+    seconds = activePreset ? parseInt(activePreset.getAttribute(presetAttr),10) : 60;
+    paint();
+  });
+  paint();
+}
+initFreeTimer('tDisplay','tStart','tReset','data-preset');
+initFreeTimer('tDisplay2','tStart2','tReset2','data-preset2');
+
+// ---------- Timer nổi (góc màn hình, dùng chung cả buổi) ----------
+(function(){
+  const wrap = document.getElementById('floatTimer');
+  const toggle = document.getElementById('ftToggle');
+  const disp = document.getElementById('ftDisplay');
+  let secs = 60, running=false, iv=null;
+  function paint(){ const m=Math.floor(secs/60).toString().padStart(2,'0'); const s=(secs%60).toString().padStart(2,'0'); disp.textContent = `${m}:${s}`; }
+  toggle.addEventListener('click', ()=> wrap.classList.toggle('collapsed'));
+  wrap.querySelectorAll('[data-ft]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const act = btn.dataset.ft;
+      if(act==='inc'){ secs+=30; paint(); }
+      if(act==='dec'){ secs=Math.max(0,secs-30); paint(); }
+      if(act==='reset'){ clearInterval(iv); running=false; secs=60; btn.closest('.ft-body').querySelector('[data-ft="start"]').textContent='Bắt đầu'; paint(); }
+      if(act==='start'){
+        if(running){ clearInterval(iv); running=false; btn.textContent='Bắt đầu'; return; }
+        running=true; btn.textContent='Dừng';
+        iv=setInterval(()=>{ if(secs>0){ secs--; paint(); } else { clearInterval(iv); running=false; btn.textContent='Bắt đầu'; } },1000);
+      }
+    });
+  });
+  paint();
+})();
+
+// ---------- Chế độ trình chiếu & Toàn màn hình ----------
+(function(){
+  const presentBtn = document.getElementById('presentToggle');
+  const fsBtn = document.getElementById('fullscreenToggle');
+  presentBtn.addEventListener('click', ()=>{
+    document.body.classList.toggle('presentation');
+    presentBtn.classList.toggle('active');
+    presentBtn.textContent = document.body.classList.contains('presentation') ? '🖥️ Thoát trình chiếu' : '🖥️ Chế độ trình chiếu';
+  });
+
+  function getFsElement(){
+    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || null;
+  }
+  function requestFs(el){
+    const fn = el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+    if(!fn) return Promise.reject(new Error('Fullscreen API not supported'));
+    try{ const r = fn.call(el); return (r && r.catch) ? r : Promise.resolve(r); }
+    catch(err){ return Promise.reject(err); }
+  }
+  function exitFs(){
+    const fn = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
+    if(!fn) return Promise.reject(new Error('Fullscreen API not supported'));
+    try{ const r = fn.call(document); return (r && r.catch) ? r : Promise.resolve(r); }
+    catch(err){ return Promise.reject(err); }
+  }
+
+  // Toàn màn hình GIẢ bằng CSS — dùng khi Fullscreen API thật bị chặn (vd: xem trong iframe/preview)
+  function enterFakeFs(){
+    document.documentElement.classList.add('fake-fullscreen');
+    fsBtn.classList.add('active');
+    fsBtn.textContent = '⛶ Thoát toàn màn hình';
+  }
+  function exitFakeFs(){
+    document.documentElement.classList.remove('fake-fullscreen');
+    fsBtn.classList.remove('active');
+    fsBtn.textContent = '⛶ Toàn màn hình';
+  }
+  function isFakeFs(){ return document.documentElement.classList.contains('fake-fullscreen'); }
+
+  fsBtn.addEventListener('click', ()=>{
+    if(isFakeFs()){ exitFakeFs(); return; }
+    if(getFsElement()){
+      exitFs().catch(()=>{});
+      return;
+    }
+    requestFs(document.documentElement).catch(err=>{
+      // API thật bị chặn (thường do permissions policy trong iframe) → dùng toàn màn hình giả
+      console.warn('Fullscreen API bị chặn, chuyển sang chế độ toàn màn hình giả:', err);
+      enterFakeFs();
+    });
+  });
+
+  ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(evt=>{
+    document.addEventListener(evt, ()=>{
+      if(isFakeFs()) return; // giữ trạng thái giả lập độc lập
+      const isFs = !!getFsElement();
+      fsBtn.classList.toggle('active', isFs);
+      fsBtn.textContent = isFs ? '⛶ Thoát toàn màn hình' : '⛶ Toàn màn hình';
+    });
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && isFakeFs()) exitFakeFs();
+  });
+})();
+</script>
+
+</body>
+</html>
